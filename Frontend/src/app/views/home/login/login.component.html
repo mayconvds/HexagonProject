@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center">Login</h3>
+                    <form #frm="ngForm" (submit)="login()">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Nome de usuário</label>
+                            <input type="text" class="form-control" id="username" name="user" [(ngModel)]="auth.user" placeholder="Digite o nome de usuário" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="auth.password" placeholder="Digite sua senha" required>
+                        </div>
+                        <div class="row" *ngIf="response.message && response.message.length > 0">
+                            <div class="col-12 text-center alert mt-3 mb-3" [class]="response.status === 'error' ? 'alert-danger' : 'alert-success'" [innerHTML]="response.message"></div>
+                        </div>
+                        <div class="d-grid gap-2 text-right">
+                            <button type="submit" [disabled]="frm.invalid" class="btn btn-success">
+                                <i class="fa-solid fa-right-to-bracket"></i>&nbsp;Entrar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

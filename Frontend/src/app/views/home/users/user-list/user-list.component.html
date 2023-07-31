@@ -1,0 +1,59 @@
+<table class="table table-bordered table-striped text-center">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Estado Civil</th>
+        <th>CPF</th>
+        <th>Localidade</th>
+        <th>Ação</th>
+    </tr>
+    </thead>
+    <tbody>
+    <span *ngIf="users.length > 0; then hasUsers else noUsers"></span>
+    <ng-template #hasUsers>
+        <tr *ngFor="let user of showUsers">
+            <td>{{user.name}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.civil_status}}</td>
+            <td>{{user.document | cpf}}</td>
+            <td>
+                {{user.city}}<br>
+                {{user.state}}
+            </td>
+            <td>
+                <div>
+                    <a class="btn btn-sm btn-primary" routerLink="/usuario/{{user.id}}"><i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar</a>
+                </div>
+                <div style="margin-top: 5px">
+                    <button class="btn btn-sm btn-danger" (click)="deleteUser(user)">
+                        <i class="fa-solid fa-trash"></i>&nbsp;Excluir
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template #noUsers>
+        <tr>
+            <td colspan="6">Ainda não possui usuário registrado</td>
+        </tr>
+    </ng-template>
+
+
+    <!-- Adicione mais linhas da tabela conforme necessário -->
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="actPage === 1" >
+            <a (click)="previousPage()" class="page-link" href="javascript:void(0)" tabindex="-1" >Anterior</a>
+        </li>
+        <li *ngFor="let i of customIndexArray(); let index = index" class="page-item" [class.active]="index + 1 === actPage" aria-current="page">
+            <a (click)="setPage(index + 1)" class="page-link" href="javascript:void(0)">{{index + 1}}</a>
+        </li>
+        <li class="page-item" [class.disabled]="this.actPage >= this.totalPages">
+            <a (click)="nextPage()" href="javascript:void(0)" class="page-link" >Próximo</a>
+        </li>
+    </ul>
+</nav>

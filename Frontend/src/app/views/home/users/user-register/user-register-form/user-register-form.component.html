@@ -1,0 +1,45 @@
+<form (ngSubmit)="register()" #frm="ngForm" >
+    <div class="form-group">
+        <label for="name">Nome:</label>
+        <input type="text" class="form-control" id="name" placeholder="Digite o nome"  name="name" [(ngModel)]="user.name" value="{{user.name}}">
+    </div>
+    <div class="form-group">
+        <label for="age">Idade:</label>
+        <input type="number" class="form-control" id="age" min="1" placeholder="Digite a idade" name="age" [(ngModel)]="user.age" value="{{user.age}}">
+    </div>
+    <div class="form-group">
+        <label for="civilStatus">Estado sivil:</label>
+        <select id="civilStatus" class="form-control" name="civil_status" [(ngModel)]="user.civil_status" required>
+            <option value="solteiro(a)" selected>Solteiro(a)</option>
+            <option value="casado(a)">Casado(a)</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="document">CPF:</label>
+        <input type="text" class="form-control" id="document"  maxlength="14" minlength="14" placeholder="Digite o CPF" name="document" [(ngModel)]="user.document"  value="{{user.document | mask : '000.000.000-00'}}">
+    </div>
+    <div class="form-group">
+        <label for="document">Cidade:</label>
+        <input type="text" class="form-control" id="city" name="city"  [(ngModel)]="user.city" value="{{user.city}}" placeholder="Digite a cidade" >
+    </div>
+    <div class="form-group">
+        <label for="document">Estado:</label>
+        <input type="text" class="form-control" id="state" name="state" [(ngModel)]="user.state" value="{{user.state}}" placeholder="Digite o estado" >
+    </div>
+
+    <div class="row" *ngIf="response.message && response.message.length > 0">
+        <div class="col-12 text-center alert mt-3 mb-3" [class]="response.status === 'error' ? 'alert-danger' : 'alert-success'" [innerHTML]="response.message"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 text-left">
+            <a routerLink="/usuarios" class="btn btn-sm btn-warning "><i class="fa-solid fa-arrow-left"></i>&nbsp;Voltar</a>
+        </div>
+
+        <div class="col-6 text-right">
+            <button type="submit" class="btn btn-sm btn-success " [disabled]="frm.invalid">
+                <i class="fa-solid fa-circle-check"></i>&nbsp;Criar
+            </button>
+        </div>
+    </div>
+</form>

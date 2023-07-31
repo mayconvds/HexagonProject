@@ -1,0 +1,39 @@
+<section class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Excluir Usuário</h4>
+    <button type="button" class="btn btn-link" (click)="close()">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</section>
+
+<section class="modal-body">
+    <div class="container">
+        <div class="row">
+            <span *ngIf="userResponse.status.length > 0 ; then showResponse else showUser"></span>
+            <ng-template #showResponse>
+                <div class="col-12 text-center alert mt-3 mb-3" *ngIf="userResponse.message && userResponse.message.length > 0" [class]="userResponse.status === 'error' ? 'alert-danger' : 'alert-success'" [innerHTML]="userResponse.message"></div>
+            </ng-template>
+            <ng-template #showUser>
+                <div class="col-12">
+                    <div>Tem certeza que deseja deletar o usuário ID: <span class="font-weight-bold">{{user.id}}</span>?</div>
+                    <div>Com o nome <span class="font-weight-bold">{{user.name}}?</span></div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</section>
+
+
+<section class="modal-footer">
+    <span *ngIf="userResponse.status.length <= 0; then buttonDelete else buttonClose"></span>
+    <ng-template #buttonDelete>
+        <button type="button" class="btn btn-sm btn-danger" (click)="delete()">
+            <i class="fa-solid fa-trash"></i>&nbsp;Deletar
+        </button>
+    </ng-template>
+
+    <ng-template #buttonClose>
+        <button type="button" class="btn btn-sm btn-primary" (click)="close()">
+            <i class="fa-solid fa-xmark"></i>&nbsp;Fechar
+        </button>
+    </ng-template>
+</section>

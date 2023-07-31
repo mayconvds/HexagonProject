@@ -1,0 +1,23 @@
+<section class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ação nescessária</h4>
+    <button type="button" class="btn btn-link" (click)="activeModal.close()">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+</section>
+
+
+<section class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center alert mt-3 mb-3" >
+                Você precisa está logado para executar essa ação!
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="modal-footer">
+    <button type="button" class="btn btn-sm btn-primary" (click)="activeModal.close()">
+        <i class="fa-solid fa-xmark"></i>&nbsp;Fechar
+    </button>
+</section>

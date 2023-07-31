@@ -1,0 +1,17 @@
+<section class="container mt-5">
+    <article class="row">
+        <span *ngIf="user && user.id > 0; then found else notFound"></span>
+        <ng-template #found>
+            <div class="col-lg-6 col-12 ml-auto mr-auto" >
+                <app-user-update-form [user]="user" [loaded]="loaded" [response]="response" (loadUser)="loadUser()"></app-user-update-form>
+            </div>
+        </ng-template>
+        <ng-template #notFound>
+            <div *ngIf="loaded">
+                Usuário não encontrado
+            </div>
+
+        </ng-template>
+
+    </article>
+</section>

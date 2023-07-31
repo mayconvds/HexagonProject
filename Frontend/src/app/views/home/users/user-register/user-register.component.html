@@ -1,0 +1,14 @@
+<section class="container mt-5">
+    <article class="row">
+        <div class="col-lg-6 col-12 ml-auto mr-auto text-center" >
+            <button class="btn btn-sm btn-primary" (click)="generateRandomUser()">
+                Gerar usuario aleatorio
+            </button>
+        </div>
+    </article>
+    <article class="row">
+        <div class="col-lg-6 col-12 ml-auto mr-auto" >
+            <app-user-register-form [user]="user"></app-user-register-form>
+        </div>
+    </article>
+</section>
